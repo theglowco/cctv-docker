@@ -1,0 +1,78 @@
+version: '3'
+services:
+  camera1:
+    image: glowco/cctv
+    build: ./build
+    volumes:
+      - html:/home/streamer/html
+    restart: unless-stopped
+    environment:
+      - CAMERA_NUMBER=1
+      - CAMERA_STREAM=202
+      - CAMERA_USER=${CAMERA_USER:?CAMERA_USER not set}
+      - CAMERA_PASSWORD=${CAMERA_PASSWORD:?CAMERA_PASSWORD not set}
+      - CAMERA_IP=${CAMERA_IP:?CAMERA_IP not set}
+      - CAMERA_PORT=${CAMERA_PORT:?CAMERA_PORT not set}
+      - SEGLEN=${SEGLEN:-3}
+      - NUMSEGS=${NUMSEGS:-8}
+  camera2:
+    image: glowco/cctv
+    build: ./build
+    volumes:
+      - html:/home/streamer/html
+    restart: unless-stopped
+    environment:
+      - CAMERA_NUMBER=2
+      - CAMERA_STREAM=102
+      - CAMERA_USER=${CAMERA_USER:?CAMERA_USER not set}
+      - CAMERA_PASSWORD=${CAMERA_PASSWORD:?CAMERA_PASSWORD not set}
+      - CAMERA_IP=${CAMERA_IP:?CAMERA_IP not set}
+      - CAMERA_PORT=${CAMERA_PORT:?CAMERA_PORT not set}
+      - SEGLEN=${SEGLEN:-3}
+      - NUMSEGS=${NUMSEGS:-8}
+  camera3:
+    image: glowco/cctv
+    build: ./build
+    volumes:
+      - html:/home/streamer/html
+    restart: unless-stopped
+    environment:
+      - CAMERA_NUMBER=3
+      - CAMERA_STREAM=302
+      - CAMERA_USER=${CAMERA_USER:?CAMERA_USER not set}
+      - CAMERA_PASSWORD=${CAMERA_PASSWORD:?CAMERA_PASSWORD not set}
+      - CAMERA_IP=${CAMERA_IP:?CAMERA_IP not set}
+      - CAMERA_PORT=${CAMERA_PORT:?CAMERA_PORT not set}
+      - SEGLEN=${SEGLEN:-3}
+      - NUMSEGS=${NUMSEGS:-8}
+  camera4:
+    image: glowco/cctv
+    build: ./build
+    volumes:
+      - html:/home/streamer/html
+    restart: unless-stopped
+    environment:
+      - CAMERA_NUMBER=4
+      - CAMERA_STREAM=402
+      - CAMERA_USER=${CAMERA_USER:?CAMERA_USER not set}
+      - CAMERA_PASSWORD=${CAMERA_PASSWORD:?CAMERA_PASSWORD not set}
+      - CAMERA_IP=${CAMERA_IP:?CAMERA_IP not set}
+      - CAMERA_PORT=${CAMERA_PORT:?CAMERA_PORT not set}
+      - SEGLEN=${SEGLEN:-3}
+      - NUMSEGS=${NUMSEGS:-8}
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8253}:80/tcp"
+    volumes:
+      - html:/usr/share/nginx/html
+    environment:
+      - TZ=Europe/London
+
+volumes:
+  html:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+
