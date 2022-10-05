@@ -5,6 +5,6 @@
 
 # hls 
 sleep 5
-cp index.html ./html/index.html
+cp ./static/* ./html/
 
 /usr/bin/vlc --intf dummy rtsp://$CAMERA_USER:$CAMERA_PASSWORD@$CAMERA_IP:$CAMERA_PORT/Streaming/channels/$CAMERA_STREAM --sout '#std{access=livehttp{seglen='"$SEGLEN"',delsegs=true,numsegs='"$NUMSEGS"',index=/home/streamer/html/camera'"$CAMERA_NUMBER"'.m3u8,index-url=camera'"$CAMERA_NUMBER"'-########.ts},mux=ts{use-key-frames},dst=/home/streamer/html/camera'"$CAMERA_NUMBER"'-########.ts}' vlc://quit

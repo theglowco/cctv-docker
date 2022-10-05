@@ -1,0 +1,17 @@
+{
+    "background_color": "black",
+    "description": "The Glow Company CCTV",
+    "display_override": ["window-control-overlay", "minimal-ui"],
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "cctv-icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ],
+    "id": "glowco-cctv",
+    "name": "The Glow Company CCTV",
+    "short_name": "CCTV",
+    "start_url": "/"
+  }
